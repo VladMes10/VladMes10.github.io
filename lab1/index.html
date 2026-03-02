@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HackPoint — Платформа для хакатонів</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>HackPoint</h1>
+        <nav>
+          <ul>
+            <li><a href="#competitions">Змагання</a></li>
+            <li><a href="#projects">Мої проєкти</a></li>
+            <li><a href="#rating">Рейтинг</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="competitions">
+        <h2>Активні змагання</h2>
+        <div class="grid-container">
+          <article class="card">
+            <img
+              src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400"
+              alt="AI Hackathon"
+            />
+            <div class="card-content">
+              <h3>AI Innovation 2026</h3>
+              <p><strong>Тема:</strong> Штучний інтелект у медицині.</p>
+              <p>
+                <strong>Правила:</strong> Команди до 4 осіб, використання
+                відкритих API.
+              </p>
+              <p><strong>Дедлайн:</strong> 15.04.2026</p>
+              <button class="btn">Зареєструватися</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <img
+              src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400"
+              alt="Programming Competition"
+            />
+            <div class="card-content">
+              <h3>Algorithm Masters</h3>
+              <p><strong>Тема:</strong> Оптимізація складних структур даних.</p>
+              <p>
+                <strong>Правила:</strong> Індивідуальна участь, 5 задач на час.
+              </p>
+              <p><strong>Дедлайн:</strong> 01.05.2026</p>
+              <button class="btn">Зареєструватися</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <img
+              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400"
+              alt="Web Dev"
+            />
+            <div class="card-content">
+              <h3>Web Masters</h3>
+              <p>
+                <strong>Тема:</strong> Еко-рішення для міської інфраструктури.
+              </p>
+              <p>
+                <strong>Правила:</strong> Тільки чистий HTML/CSS та JS, оцінка
+                за UI/UX.
+              </p>
+              <p><strong>Дедлайн:</strong> 20.05.2026</p>
+              <button class="btn">Зареєструватися</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="section-header">
+          <h2>Мої проєкти та заявки</h2>
+          <button class="btn-create">+ Створити заявку</button>
+        </div>
+        <p>
+          Керуйте своїми реєстраціями проєктів на змагання та відстежуйте статус
+          поданих проєктів.
+        </p>
+
+        <div class="project-board">
+          <article class="project-item">
+            <div class="project-info">
+              <strong>MedScan AI</strong>
+              <p>Змагання: AI Innovation 2026</p>
+            </div>
+            <span class="status status-process">У розробці</span>
+            <div class="project-actions">
+              <button class="btn-primary">Редагувати</button>
+            </div>
+          </article>
+
+          <article class="project-item">
+            <div class="project-info">
+              <strong>Оптимізація графів</strong>
+              <p>Змагання: Algorithm Masters</p>
+            </div>
+            <span class="status status-done">Прийнято</span>
+            <div class="project-actions">
+              <button class="btn-primary">Переглянути</button>
+            </div>
+          </article>
+
+          <article class="project-item">
+            <div class="project-info">
+              <strong>EcoMonitor Portal</strong>
+              <p>Змагання: Web Masters</p>
+            </div>
+            <span class="status status-pending">Відправлено</span>
+            <div class="project-actions">
+              <button class="btn-primary">Переглянути</button>
+              <button class="btn-secondary">Скасувати</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="rating">
+        <h2>Рейтинг учасників</h2>
+        <div class="table-wrapper">
+          <table class="rating-table">
+            <thead>
+              <tr>
+                <th>Місце</th>
+                <th>Учасник</th>
+                <th>Перемоги</th>
+                <th>Бали</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="my-row">
+                <td>1</td>
+                <td>vlad_khmara</td>
+                <td>5</td>
+                <td>1250</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>it_wizard</td>
+                <td>4</td>
+                <td>1100</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>code_master</td>
+                <td>3</td>
+                <td>980</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>Контакти: support@hackpoint.ua | +380 32 123 25 77</p>
+        <p>Адреса: м. Львів, вул. С. Бандери, 12</p>
+        <p>&copy; HackPoint. Усі права захищені.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -78,7 +78,8 @@ function Home({ seconds, appliedIds, onApply }) {
               key={item.id} 
               {...item} 
               isApplied={appliedIds.includes(item.id)} 
-              onToggle={() => onApply(item.id)} 
+              // передаю два параметри: title та id
+              onToggle={() => onApply(item.title, item.id)} 
             />
           ))}
         </div>

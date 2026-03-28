@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
-import { auth } from './firebase'; // Мій конфіг
+import { auth, db } from './firebase'; // Мій конфіг + db
 import { onAuthStateChanged, signOut } from "firebase/auth"; // Функції Firebase
+import { collection, addDoc, query, where, getDocs, deleteDoc, doc } from "firebase/firestore"; // Firestore функції
 import Home from './Home';
 import Results from './Results';
 import MyProjects from './MyProjects';
@@ -19,8 +20,18 @@ function App() {
   // Логіка відліку таймера на рівні App, щоб він не зникав при зміні сторінок
   useEffect(() => {
     // Відстежую зміни стану входу
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
+      
+      // Якщо користувач увійшов, підтягую його реєстрації з бази
+      if (currentUser) {
+        const q = query(collection(db, "registrations"), where("userId", "==", currentUser.uid));
+        const snap = await getDocs(q);
+        const ids = snap.docs.map(doc => doc.data().competitionId);
+        setAppliedIds(ids);
+      } else {
+        setAppliedIds([]);
+      }
     });
 
     const timerInterval = setInterval(() => {
@@ -36,15 +47,41 @@ function App() {
 
   const handleLogout = () => signOut(auth); // Функція виходу
 
-  // Функція для подачі/скасування заявки
-  const toggleApply = (id) => {
+  // Функція для подачі/скасування заявки через Firebase
+  const toggleApply = async (hackathonTitle, hackathonId) => {
     if (!user) {
       window.location.href = '/login';
       return;
     }
-    setAppliedIds(prev => 
-      prev.includes(id) ? prev.filter(itemId => itemId !== id) : [...prev, id]
-    );
+
+    try {
+      // Перевіряю, чи є вже така реєстрація в базі
+      const q = query(
+        collection(db, "registrations"), 
+        where("userId", "==", user.uid), 
+        where("competitionId", "==", hackathonId)
+      );
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        // Якщо реєстрація вже є — видаляю її
+        querySnapshot.forEach(async (document) => {
+          await deleteDoc(doc(db, "registrations", document.id));
+        });
+        setAppliedIds(prev => prev.filter(id => id !== hackathonId));
+      } else {
+        // Якщо немає — додаю новий документ у колекцію registrations
+        await addDoc(collection(db, "registrations"), {
+          userId: user.uid,
+          competitionId: hackathonId,
+          competitionTitle: hackathonTitle, // Зберігаю назву для MyProjects.js
+          registeredAt: new Date().toISOString()
+        });
+        setAppliedIds(prev => [...prev, hackathonId]);
+      }
+    } catch (error) {
+      console.error("Помилка реєстрації:", error);
+    }
   };
 
   return (

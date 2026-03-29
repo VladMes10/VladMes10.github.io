@@ -39,7 +39,7 @@ function App() {
     }, 1000);
 
     // Запит на отримання даних з серверної частини
-    fetch("http://localhost:5000/api/message")
+    fetch("https://vlad-hackathon-api.onrender.com/api/message")
       .then(response => response.json())
       .then(data => {
         // Повідомлення з'явиться в консолі браузера

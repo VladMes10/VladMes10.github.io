@@ -41,7 +41,7 @@ function MyProjects() {
 
       // --- ЗАВДАННЯ 3: Отримання реєстрацій ЧЕРЕЗ СЕРВЕР ---
       // Замість прямого запиту в db, звертаюся до мого API
-      const response = await fetch("http://localhost:5000/api/applications");
+      const response = await fetch("https://vlad-hackathon-api.onrender.com/api/applications");
       const allApplications = await response.json();
       
       // Фільтрую отримані від сервера дані за UID та сортую за назвою
@@ -87,7 +87,7 @@ function MyProjects() {
 
     try {
       // --- ЗАВДАННЯ 4: ВІДПРАВКА ЧЕРЕЗ POST НА СЕРВЕР ---
-      const response = await fetch("http://localhost:5000/api/projects", {
+      const response = await fetch("https://vlad-hackathon-api.onrender.com/api/projects", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

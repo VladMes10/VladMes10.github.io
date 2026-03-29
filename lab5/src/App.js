@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, useNavigate} from 'react-router-dom';
 import { auth, db } from './firebase'; // Мій конфіг + db
 import { onAuthStateChanged, signOut } from "firebase/auth"; // Функції Firebase
 import { collection, addDoc, query, where, getDocs, deleteDoc, doc } from "firebase/firestore"; // Firestore функції
@@ -10,6 +10,7 @@ import Login from './Login';
 import './App.css';
 
 function App() {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null); // Стан автентифікації
   // 1. Глобальний стан для заявок
   const [appliedIds, setAppliedIds] = useState([]);
@@ -59,7 +60,7 @@ function App() {
   // Функція для подачі/скасування заявки через Firebase
   const toggleApply = async (hackathonTitle, hackathonId) => {
     if (!user) {
-      window.location.href = '/login';
+      navigate('/login');
       return;
     }
 

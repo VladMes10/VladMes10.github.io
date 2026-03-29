@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate, useNavigate} from 'react-router-dom';
+import { Routes, Route, Link, Navigate, useNavigate} from 'react-router-dom';
 import { auth, db } from './firebase'; // Мій конфіг + db
 import { onAuthStateChanged, signOut } from "firebase/auth"; // Функції Firebase
 import { collection, addDoc, query, where, getDocs, deleteDoc, doc } from "firebase/firestore"; // Firestore функції
@@ -95,7 +95,6 @@ function App() {
   };
 
   return (
-    <Router>
       <div className="App">
         <header>
           <div className="container">
@@ -166,7 +165,6 @@ function App() {
           </div>
         </footer>
       </div>
-    </Router>
   );
 }
 
